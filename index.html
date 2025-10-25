@@ -1,41 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meri Free Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertex Retail Group</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #2b1055, #7597de);
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+    }
+
+    header {
+      background: #111;
       color: white;
+      padding: 20px;
       text-align: center;
-      padding: 100px 20px;
+      font-size: 1.8em;
+      letter-spacing: 1px;
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      word-wrap: break-word;
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff') center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
     }
-    p {
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 10px 0;
       font-size: 1.2em;
     }
+
+    .product p {
+      color: #555;
+      font-size: 1em;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
     footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
       margin-top: 50px;
-      font-size: 0.9em;
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Welcome to My Free Website 🚀</h1>
-  <p>Welcome to Vertex Retail Group official site 🛍️</p>
-<p>We provide quality products at the best prices.</p>
+  <header>🛍️ Vertex Retail Group</header>
 
+  <div class="hero">
+    Welcome to Our Store
+  </div>
 
-  <footer>
-    <p>© 2025 Bhai ki Website | Made with ❤️ and free hosting</p>
-  </footer>
+  <section class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" alt="Watch">
+      <h3>Luxury Watch</h3>
+      <p>₹2,499</p>
+      <a href="#" class="btn">Buy Now</a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="Shoes">
+      <h3>Sport Shoes</h3>
+      <p>₹1,999</p>
+      <a href="#" class="btn">Buy Now</a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="Bag">
+      <h3>Leather Bag</h3>
+      <p>₹1,299</p>
+      <a href="#" class="btn">Buy Now</a>
+    </div>
+  </section>
+
+  <footer>© 2025 Vertex Retail Group | All Rights Reserved</footer>
 </body>
 </html>
-
