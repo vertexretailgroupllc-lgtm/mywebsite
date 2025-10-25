@@ -4,179 +4,117 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vertex Retail Group LLC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8fafc;
-      color: #111;
-      overflow-x: hidden;
-    }
-    /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      background: linear-gradient(90deg, #001f3f, #004080);
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-    header h1 { font-size: 1.5em; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-    }
-    nav a:hover { text-decoration: underline; }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #333;}
 
-    /* Hero slider */
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-    }
-    .slides {
-      display: flex;
-      width: 300%;
-      animation: slide 12s infinite;
-    }
-    .slides img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
+    /* Header */
+    header {background: #111; color: #fff; text-align: center; padding: 20px; font-size: 1.8em; font-weight: 600;}
+
+    /* Hero Slider */
+    .hero {position: relative; width: 100%; height: 350px; overflow: hidden;}
+    .slides {display: flex; width: 400%; animation: slide 16s infinite;}
+    .slides img {width: 100%; height: 350px; object-fit: cover;}
     @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
+      0% {margin-left: 0;}
+      25% {margin-left: -100%;}
+      50% {margin-left: -200%;}
+      75% {margin-left: -300%;}
+      100% {margin-left: 0;}
     }
 
-    /* Brand slider */
-    .brands {
-      background: #fff;
-      padding: 20px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .brand-track {
-      display: inline-block;
-      animation: scrollBrands 20s linear infinite;
-    }
-    .brand-track img {
-      height: 60px;
-      margin: 0 30px;
-      vertical-align: middle;
-    }
-    @keyframes scrollBrands {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
+    /* Brand Slider */
+    .brands {background: #fff; padding: 20px 0; overflow: hidden; white-space: nowrap;}
+    .brands img {height: 50px; margin: 0 25px; display: inline-block; animation: brandScroll 20s linear infinite;}
+    @keyframes brandScroll {0%{transform: translateX(100%);}100%{transform: translateX(-100%);}}
 
-    /* Products */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-    .product {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s;
-    }
-    .product:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    .product img {
-      width: 100%;
-      border-radius: 10px;
-      height: 220px;
-      object-fit: cover;
-    }
-    .product h3 { margin: 10px 0; font-size: 1.1em; }
-    .product p { color: #666; font-size: 0.9em; }
-    .product .price { color: #007bff; font-weight: 700; margin-top: 8px; }
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn:hover { background: #0056b3; }
+    /* Section */
+    section {padding: 40px;}
+    h2 {text-align: center; margin-bottom: 30px; color: #111;}
 
-    footer {
-      background: #001f3f;
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-      margin-top: 40px;
-    }
-    footer p { margin: 5px 0; }
+    /* Products Grid */
+    .products {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
+    .product {background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 15px; text-align: center; transition: 0.3s;}
+    .product:hover {transform: translateY(-5px);}
+    .product img {width: 100%; height: 180px; border-radius: 10px; object-fit: cover;}
+    .product h3 {margin: 10px 0; font-size: 1.1em;}
+    .product p {color: #555;}
+    .btn {display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007bff; color: #fff; border-radius: 5px; text-decoration: none;}
+    .btn:hover {background: #0056b3;}
+
+    /* Footer */
+    footer {background: #111; color: #ccc; text-align: center; padding: 25px; margin-top: 50px; line-height: 1.6;}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🛍️ Vertex Retail Group LLC</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <!-- Slider -->
-  <div class="slider">
+  <header>🛍️ Vertex Retail Group LLC</header>
+
+  <!-- Hero Slider -->
+  <div class="hero">
     <div class="slides">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Banner 1">
-      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Banner 2">
-      <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6" alt="Banner 3">
+      <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db" alt="Shop Banner 1">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713" alt="Shop Banner 2">
+      <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0" alt="Shop Banner 3">
+      <img src="https://images.unsplash.com/photo-1585386959984-a41552231693" alt="Shop Banner 4">
     </div>
   </div>
 
-  <!-- Brands -->
+  <!-- Brand Slider -->
   <div class="brands">
-    <div class="brand-track">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Nike_logo.svg" alt="Nike">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Adidas_logo.svg" alt="Adidas">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Puma_AG.svg" alt="Puma">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Apple_logo_grey.svg" alt="Apple">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Samsung_logo_blue.svg" alt="Samsung">
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Nestle_textlogo_blue.svg" alt="Nestle">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Pedigree_logo.svg" alt="Pedigree">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/GNC_logo.svg" alt="GNC">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/L%27Oreal_logo.svg" alt="L'Oreal">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Dove_logo.svg" alt="Dove">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Royal_Canin_logo.svg" alt="Royal Canin">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Olay_logo.svg" alt="Olay">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Kellogg%27s_logo.svg" alt="Kellogg's">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Purina_Logo.svg" alt="Purina">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Herbalife_Nutrition_logo.svg" alt="Herbalife">
   </div>
 
-  <!-- Products -->
-  <section class="products">
-    <div class="product"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" alt="Watch"><h3>Luxury Watch</h3><p>Stylish automatic watch with leather strap</p><div class="price">$29.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="Shoes"><h3>Sport Shoes</h3><p>Lightweight running shoes for comfort</p><div class="price">$49.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="Bag"><h3>Leather Bag</h3><p>Premium leather bag with compartments</p><div class="price">$39.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" alt="Smart Watch"><h3>Smart Watch</h3><p>Track health & fitness smartly</p><div class="price">$79.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Headphones"><h3>Wireless Headphones</h3><p>High quality sound & comfort</p><div class="price">$59.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4d7c3b9" alt="Laptop"><h3>Gaming Laptop</h3><p>High performance & durability</p><div class="price">$899.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1555617117-08bd3a5f0c8c" alt="Camera"><h3>DSLR Camera</h3><p>Capture every perfect shot</p><div class="price">$499.99</div><a href="#" class="btn">Buy Now</a></div>
-    <div class="product"><img src="https://images.unsplash.com/photo-1512499617640-c2f999018b72" alt="Perfume"><h3>Luxury Perfume</h3><p>Elegant fragrance for every occasion</p><div class="price">$19.99</div><a href="#" class="btn">Buy Now</a></div>
+  <!-- Categories and Products -->
+  <section>
+    <h2>Groceries 🥫</h2>
+    <div class="products">
+      <div class="product"><img src="https://images.unsplash.com/photo-1565958011705-44e21157c60e" alt=""><h3>Organic Honey</h3><p>$8.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1606755962773-0a2f7e673c9b" alt=""><h3>Olive Oil</h3><p>$12.50</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1584267385494-9bdbabdcfe21" alt=""><h3>Cereal Pack</h3><p>$5.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58" alt=""><h3>Pasta Pack</h3><p>$4.99</p><a href="#" class="btn">Buy Now</a></div>
+    </div>
+
+    <h2>Pet Supplies 🐾</h2>
+    <div class="products">
+      <div class="product"><img src="https://images.unsplash.com/photo-1621891334504-2f8c6c88e7dc" alt=""><h3>Dog Food</h3><p>$14.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1615732452773-4e6b8dbcc922" alt=""><h3>Cat Toy</h3><p>$6.50</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1612531386440-44d8c3b2b34a" alt=""><h3>Pet Shampoo</h3><p>$9.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt=""><h3>Dog Leash</h3><p>$7.25</p><a href="#" class="btn">Buy Now</a></div>
+    </div>
+
+    <h2>Supplements 💊</h2>
+    <div class="products">
+      <div class="product"><img src="https://images.unsplash.com/photo-1588776814546-58c45f1b7b09" alt=""><h3>Vitamin C</h3><p>$10.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1598472566367-7b3db58b5ef1" alt=""><h3>Protein Powder</h3><p>$25.00</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1615485296510-f8e7f1e2a2c0" alt=""><h3>Fish Oil</h3><p>$15.75</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1583337130417-3346a1afdd0d" alt=""><h3>Multivitamin</h3><p>$18.40</p><a href="#" class="btn">Buy Now</a></div>
+    </div>
+
+    <h2>Beauty 💄</h2>
+    <div class="products">
+      <div class="product"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04e1" alt=""><h3>Face Cream</h3><p>$11.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1596464716127-f2f3dc50896d" alt=""><h3>Perfume</h3><p>$29.99</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1601044248068-8f1b9d05e59f" alt=""><h3>Shampoo</h3><p>$9.50</p><a href="#" class="btn">Buy Now</a></div>
+      <div class="product"><img src="https://images.unsplash.com/photo-1556228724-4b7f49a69ff7" alt=""><h3>Lipstick</h3><p>$8.99</p><a href="#" class="btn">Buy Now</a></div>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 Vertex Retail Group LLC | All Rights Reserved</p>
+    <p>Vertex Retail Group LLC</p>
     <p>7901 4th St N #24751, St. Petersburg, FL 33702</p>
     <p>📞 +1 786-429-9302</p>
   </footer>
+
 </body>
 </html>
