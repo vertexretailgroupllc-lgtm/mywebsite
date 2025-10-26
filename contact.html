@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Vertex Retail Group LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#0b66d1;--bg:#f6f8fb}
+    body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#0b1720}
+    header{background:linear-gradient(90deg,#0b4da2,#0d63a6);color:#fff;padding:12px 18px}
+    .wrap{max-width:1000px;margin:22px auto;padding:0 16px}
+    .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(12,20,30,0.06)}
+    form{display:grid;gap:12px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e6eef8;width:100%}
+    button{padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;border:none;cursor:pointer}
+    footer{background:#072a66;color:#dfe9ff;padding:22px 16px;text-align:center;margin-top:26px}
+  </style>
+</head>
+<body>
+  <header><div style="max-width:1000px;margin:0 auto;padding:0 16px;font-weight:700">Vertex Retail Group LLC — Contact</div></header>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>Get in touch</h2>
+      <p>Address: 7901 4th St N #24751, St. Petersburg, FL 33702</p>
+      <p>Phone: 📞 +1 786-429-9302</p>
+      <form onsubmit="return sendMail(this)">
+        <input name="name" placeholder="Your name" required />
+        <input name="email" type="email" placeholder="Your email" required />
+        <textarea name="message" rows="6" placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>Vertex Retail Group LLC — 📞 +1 786-429-9302</footer>
+
+  <script>
+    function sendMail(f){
+      // Static site: use mailto so message opens user's email client
+      const subject = encodeURIComponent('Website inquiry from ' + f.name.value);
+      const body = encodeURIComponent('Name: ' + f.name.value + '\\nEmail: ' + f.email.value + '\\n\\n' + f.message.value);
+      window.location.href = 'mailto:hello@vertexretailgroupllc.com?subject=' + subject + '&body=' + body;
+      return false;
+    }
+  </script>
+</body>
+</html>
