@@ -1,120 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vertex Retail Group LLC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    body {font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #333;}
-
-    /* Header */
-    header {background: #111; color: #fff; text-align: center; padding: 20px; font-size: 1.8em; font-weight: 600;}
-
-    /* Hero Slider */
-    .hero {position: relative; width: 100%; height: 350px; overflow: hidden;}
-    .slides {display: flex; width: 400%; animation: slide 16s infinite;}
-    .slides img {width: 100%; height: 350px; object-fit: cover;}
-    @keyframes slide {
-      0% {margin-left: 0;}
-      25% {margin-left: -100%;}
-      50% {margin-left: -200%;}
-      75% {margin-left: -300%;}
-      100% {margin-left: 0;}
+    :root{
+      --accent:#0d6efd;
+      --accent-dark:#0747b3;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --radius:12px;
+      --shadow:0 10px 30px rgba(15,23,42,0.06);
+      --maxwidth:1200px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background:var(--bg); color:#0b1720; -webkit-font-smoothing:antialiased;
     }
 
-    /* Brand Slider */
-    .brands {background: #fff; padding: 20px 0; overflow: hidden; white-space: nowrap;}
-    .brands img {height: 50px; margin: 0 25px; display: inline-block; animation: brandScroll 20s linear infinite;}
-    @keyframes brandScroll {0%{transform: translateX(100%);}100%{transform: translateX(-100%);}}
+    /* ---------- NAVBAR ---------- */
+    .nav{
+      position:sticky; top:0; z-index:1200;
+      background: linear-gradient(90deg,#072a66 0%, #0d4a8a 100%);
+      color:#fff; padding:14px 20px; box-shadow:0 6px 20px rgba(2,6,23,0.12);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00c6ff,#007bff);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.18)
+    }
+    .nav .title{font-weight:600;font-size:1.05rem}
+    nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;align-items:center}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
 
-    /* Section */
-    section {padding: 40px;}
-    h2 {text-align: center; margin-bottom: 30px; color: #111;}
+    /* ---------- HERO SLIDER (category-based) ---------- */
+    .hero-wrap{max-width:var(--maxwidth);margin:18px auto;padding:0 16px}
+    .hero{
+      position:relative; overflow:hidden; border-radius:14px; height:420px;
+      box-shadow:var(--shadow);
+    }
+    .hero-slide{
+      position:absolute; inset:0; opacity:0; transform:translateX(10px); transition:all .8s cubic-bezier(.2,.9,.3,1);
+      background-size:cover;background-position:center center;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .hero-slide.show{opacity:1; transform:translateX(0);}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,6,23,0.18),rgba(3,6,23,0.28));border-radius:14px}
+    .hero-content{position:relative;z-index:2;color:#fff;text-align:center;padding:30px 20px}
+    .hero-content h1{font-size:clamp(22px,4.5vw,44px);margin-bottom:8px;font-weight:700;letter-spacing:0.2px}
+    .hero-content p{color:rgba(255,255,255,0.9);font-size:1.03rem;margin-bottom:12px}
 
-    /* Products Grid */
-    .products {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
-    .product {background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 15px; text-align: center; transition: 0.3s;}
-    .product:hover {transform: translateY(-5px);}
-    .product img {width: 100%; height: 180px; border-radius: 10px; object-fit: cover;}
-    .product h3 {margin: 10px 0; font-size: 1.1em;}
-    .product p {color: #555;}
-    .btn {display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007bff; color: #fff; border-radius: 5px; text-decoration: none;}
-    .btn:hover {background: #0056b3;}
+    .hero-controls{position:absolute;left:16px;bottom:14px;display:flex;gap:8px;z-index:3}
+    .dot{width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,0.35);border:2px solid rgba(255,255,255,0.12);cursor:pointer}
+    .dot.active{background:#fff}
 
-    /* Footer */
-    footer {background: #111; color: #ccc; text-align: center; padding: 25px; margin-top: 50px; line-height: 1.6;}
+    /* ---------- BRANDS CAROUSEL ---------- */
+    .brands-wrap{background:#fff;padding:14px 0;margin-top:18px;box-shadow:var(--shadow)}
+    .brand-track{display:flex;gap:28px;align-items:center;padding:8px 4%;animation:brandMove linear infinite}
+    .brand-track img{height:48px;filter:grayscale(0.03);opacity:0.95}
+    @keyframes brandMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    /* To create continuous scroll: duplicate track in JS (we will do) */
+
+    /* ---------- CATEGORIES NAV (quick) ---------- */
+    .cats{max-width:var(--maxwidth);margin:20px auto;padding:0 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .cat-btn{background:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 8px 20px rgba(11,23,34,0.04);cursor:pointer;font-weight:600;color:var(--muted)}
+    .cat-btn.active{background:linear-gradient(90deg,#e6f0ff,#dfefff);color:var(--accent);box-shadow:0 12px 30px rgba(3,102,255,0.08)}
+
+    /* ---------- PRODUCTS ---------- */
+    .container{max-width:var(--maxwidth);margin:22px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .card{
+      background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 48px rgba(12,20,30,0.12)}
+    .thumb{height:170px;border-radius:10px;overflow:hidden;background:#f3f6f9;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .card h3{margin:14px 0 6px;font-size:1.05rem}
+    .card p.desc{color:var(--muted);font-size:0.95rem;margin:0 0 8px}
+    .price{color:var(--accent);font-weight:700;margin-top:auto;font-size:1rem}
+    .actions{display:flex;gap:8px;align-items:center;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
+    .btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(11,23,34,0.06)}
+
+    /* ---------- FOOTER ---------- */
+    footer{background:#071a3a;color:#d1d9ea;padding:28px 16px;text-align:center;margin-top:26px;border-top:1px solid rgba(255,255,255,0.02)}
+    footer p{margin:6px 0;font-size:0.95rem;color:#d2d9e8}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (min-width:1000px){
+      .hero{height:460px}
+      .thumb{height:220px}
+    }
+    @media (max-width:720px){
+      .nav{padding:10px 12px}
+      .brand-track{gap:18px}
+      .hero{height:300px}
+      .thumb{height:160px}
+    }
   </style>
 </head>
 <body>
 
-  <header>🛍️ Vertex Retail Group LLC</header>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="brand">
+      <div class="logo">VR</div>
+      <div style="line-height:1">
+        <div class="title">Vertex Retail Group LLC</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.85);font-weight:500">Quality store</div>
+      </div>
+    </div>
 
-  <!-- Hero Slider -->
-  <div class="hero">
-    <div class="slides">
-      <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db" alt="Shop Banner 1">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713" alt="Shop Banner 2">
-      <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0" alt="Shop Banner 3">
-      <img src="https://images.unsplash.com/photo-1585386959984-a41552231693" alt="Shop Banner 4">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO (category slider) -->
+  <div class="hero-wrap">
+    <div class="hero" id="hero">
+      <div class="hero-slide" data-cat="groceries" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&q=60&w=1900&fit=crop')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Groceries</h1>
+          <p>Fresh items, pantry essentials & daily staples</p>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-cat="pets" style="background-image:url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&q=60&w=1900&fit=crop')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Pet Supplies</h1>
+          <p>Quality food & accessories for your pets</p>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-cat="supplements" style="background-image:url('https://images.unsplash.com/photo-1587825140708-2f8a9dcd2f47?auto=format&q=60&w=1900&fit=crop')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Supplements</h1>
+          <p>Vitamins, protein & health essentials</p>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-cat="beauty" style="background-image:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&q=60&w=1900&fit=crop')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Beauty</h1>
+          <p>Skincare, haircare & cosmetics</p>
+        </div>
+      </div>
+
+      <!-- dots -->
+      <div class="hero-controls" id="heroDots" aria-hidden="false" style="left:50%;transform:translateX(-50%);bottom:18px"></div>
     </div>
   </div>
 
-  <!-- Brand Slider -->
-  <div class="brands">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Nestle_textlogo_blue.svg" alt="Nestle">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Pedigree_logo.svg" alt="Pedigree">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/GNC_logo.svg" alt="GNC">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/L%27Oreal_logo.svg" alt="L'Oreal">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Dove_logo.svg" alt="Dove">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Royal_Canin_logo.svg" alt="Royal Canin">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Olay_logo.svg" alt="Olay">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Kellogg%27s_logo.svg" alt="Kellogg's">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Purina_Logo.svg" alt="Purina">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Herbalife_Nutrition_logo.svg" alt="Herbalife">
+  <!-- Brands (continuous scroll) -->
+  <div class="brands-wrap">
+    <div class="brand-track" id="brandTrack">
+      <!-- reliable logo URLs (duplicate set will be created by JS for continuous scroll) -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Nestle_textlogo_blue.svg" alt="Nestle" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Pedigree_logo.svg" alt="Pedigree" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/GNC_logo.svg" alt="GNC" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/L%27Oreal_logo.svg" alt="L'Oreal" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Dove_logo.svg" alt="Dove" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Royal_Canin_logo.svg" alt="Royal Canin" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Olay_logo.svg" alt="Olay" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Kellogg%27s_logo.svg" alt="Kellogg's" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Purina_Logo.svg" alt="Purina" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Herbalife_Nutrition_logo.svg" alt="Herbalife" loading="lazy">
+    </div>
   </div>
 
-  <!-- Categories and Products -->
-  <section>
-    <h2>Groceries 🥫</h2>
-    <div class="products">
-      <div class="product"><img src="https://images.unsplash.com/photo-1565958011705-44e21157c60e" alt=""><h3>Organic Honey</h3><p>$8.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1606755962773-0a2f7e673c9b" alt=""><h3>Olive Oil</h3><p>$12.50</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1584267385494-9bdbabdcfe21" alt=""><h3>Cereal Pack</h3><p>$5.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58" alt=""><h3>Pasta Pack</h3><p>$4.99</p><a href="#" class="btn">Buy Now</a></div>
-    </div>
+  <!-- Category quick buttons -->
+  <div class="cats" id="catBtns">
+    <div class="cat-btn active" data-cat="groceries">Groceries 🥫</div>
+    <div class="cat-btn" data-cat="pets">Pet Supplies 🐾</div>
+    <div class="cat-btn" data-cat="supplements">Supplements 💊</div>
+    <div class="cat-btn" data-cat="beauty">Beauty 💄</div>
+  </div>
 
-    <h2>Pet Supplies 🐾</h2>
-    <div class="products">
-      <div class="product"><img src="https://images.unsplash.com/photo-1621891334504-2f8c6c88e7dc" alt=""><h3>Dog Food</h3><p>$14.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1615732452773-4e6b8dbcc922" alt=""><h3>Cat Toy</h3><p>$6.50</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1612531386440-44d8c3b2b34a" alt=""><h3>Pet Shampoo</h3><p>$9.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt=""><h3>Dog Leash</h3><p>$7.25</p><a href="#" class="btn">Buy Now</a></div>
-    </div>
+  <!-- Products area -->
+  <main class="container">
+    <!-- GROCERIES -->
+    <section id="groceries" class="prod-section">
+      <h2 style="text-align:center;margin-bottom:18px">Groceries 🥫</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1565958011705-44e21157c60e?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Organic Honey</h3><p class="desc">Raw organic honey, 500g</p><div class="price">$8.99</div>
+          <div class="actions"><a class="btn" href="#" data-product="Organic Honey" data-price="8.99">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1606755962773-0a2f7e673c9b?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Olive Oil</h3><p class="desc">Extra virgin olive oil 1L</p><div class="price">$12.50</div>
+          <div class="actions"><a class="btn" href="#" data-product="Olive Oil" data-price="12.50">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1584267385494-9bdbabdcfe21?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Cereal Pack</h3><p class="desc">Breakfast cereal 750g</p><div class="price">$5.99</div>
+          <div class="actions"><a class="btn" href="#" data-product="Cereal Pack" data-price="5.99">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Pasta Pack</h3><p class="desc">Premium durum wheat pasta</p><div class="price">$4.99</div>
+          <div class="actions"><a class="btn" href="#" data-product="Pasta Pack" data-price="4.99">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Supplements 💊</h2>
-    <div class="products">
-      <div class="product"><img src="https://images.unsplash.com/photo-1588776814546-58c45f1b7b09" alt=""><h3>Vitamin C</h3><p>$10.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1598472566367-7b3db58b5ef1" alt=""><h3>Protein Powder</h3><p>$25.00</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1615485296510-f8e7f1e2a2c0" alt=""><h3>Fish Oil</h3><p>$15.75</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1583337130417-3346a1afdd0d" alt=""><h3>Multivitamin</h3><p>$18.40</p><a href="#" class="btn">Buy Now</a></div>
-    </div>
+    <!-- PETS -->
+    <section id="pets" class="prod-section" style="display:none">
+      <h2 style="text-align:center;margin-bottom:18px">Pet Supplies 🐾</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1621891334504-2f8c6c88e7dc?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Dog Food</h3><p class="desc">Balanced nutrition for adult dogs</p><div class="price">$14.99</div>
+          <div class="actions"><a class="btn" href="#" data-product="Dog Food" data-price="14.99">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1615732452773-4e6b8dbcc922?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Cat Toy</h3><p class="desc">Interactive toy for cats</p><div class="price">$6.50</div>
+          <div class="actions"><a class="btn" href="#" data-product="Cat Toy" data-price="6.50">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1612531386440-44d8c3b2b34a?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Pet Shampoo</h3><p class="desc">Gentle shampoo for pets</p><div class="price">$9.99</div>
+          <div class="actions"><a class="btn" href="#" data-product="Pet Shampoo" data-price="9.99">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+        <div class="card">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&q=60&w=1200&fit=crop" alt=""></div>
+          <h3>Dog Leash</h3><p class="desc">Durable leash for walking</p><div class="price">$7.25</div>
+          <div class="actions"><a class="btn" href="#" data-product="Dog Leash" data-price="7.25">Buy Now</a><a class="btn secondary" href="#">View</a></div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Beauty 💄</h2>
-    <div class="products">
-      <div class="product"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04e1" alt=""><h3>Face Cream</h3><p>$11.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1596464716127-f2f3dc50896d" alt=""><h3>Perfume</h3><p>$29.99</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1601044248068-8f1b9d05e59f" alt=""><h3>Shampoo</h3><p>$9.50</p><a href="#" class="btn">Buy Now</a></div>
-      <div class="product"><img src="https://images.unsplash.com/photo-1556228724-4b7f49a69ff7" alt=""><h3>Lipstick</h3><p>$8.99</p><a href="#" class="btn">Buy Now</a></div>
-    </div>
-  </section>
+    <!-- SUPPLEMENTS -->
+    <section id="supplements" class="prod-section" style="display:none">
+      <h2 style="text-align:center;margin-bottom:18px">Supplements 💊</h2>
+      <div class="grid">
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1588776814546-58c45f1b7b09?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Vitamin C</h3><p class="desc">Immune support tablets</p><div class="price">$10.99</div><div class="actions"><a class="btn" href="#" data-product="Vitamin C" data-price="10.99">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1598472566367-7b3db58b5ef1?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Protein Powder</h3><p class="desc">Whey protein, 2lb</p><div class="price">$25.00</div><div class="actions"><a class="btn" href="#" data-product="Protein Powder" data-price="25.00">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1615485296510-f8e7f1e2a2c0?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Fish Oil</h3><p class="desc">Omega-3 softgels</p><div class="price">$15.75</div><div class="actions"><a class="btn" href="#" data-product="Fish Oil" data-price="15.75">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1583337130417-3346a1afdd0d?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Multivitamin</h3><p class="desc">Daily multivitamin tablets</p><div class="price">$18.40</div><div class="actions"><a class="btn" href="#" data-product="Multivitamin" data-price="18.40">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+      </div>
+    </section>
 
+    <!-- BEAUTY -->
+    <section id="beauty" class="prod-section" style="display:none">
+      <h2 style="text-align:center;margin-bottom:18px">Beauty 💄</h2>
+      <div class="grid">
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04e1?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Face Cream</h3><p class="desc">Hydrating face cream</p><div class="price">$11.99</div><div class="actions"><a class="btn" href="#" data-product="Face Cream" data-price="11.99">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1596464716127-f2f3dc50896d?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Perfume</h3><p class="desc">Designer perfume 50ml</p><div class="price">$29.99</div><div class="actions"><a class="btn" href="#" data-product="Perfume" data-price="29.99">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1601044248068-8f1b9d05e59f?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Shampoo</h3><p class="desc">Nourishing hair shampoo</p><div class="price">$9.50</div><div class="actions"><a class="btn" href="#" data-product="Shampoo" data-price="9.50">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+        <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1556228724-4b7f49a69ff7?auto=format&q=60&w=1200&fit=crop" alt=""></div><h3>Lipstick</h3><p class="desc">Matte long-lasting lipstick</p><div class="price">$8.99</div><div class="actions"><a class="btn" href="#" data-product="Lipstick" data-price="8.99">Buy Now</a><a class="btn secondary" href="#">View</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer>
     <p>Vertex Retail Group LLC</p>
     <p>7901 4th St N #24751, St. Petersburg, FL 33702</p>
     <p>📞 +1 786-429-9302</p>
   </footer>
 
+  <!-- Minimal JS for slider, brands duplication & category switching -->
+  <script>
+    // Hero slider logic (category banners)
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.hero-slide'));
+      const dotsWrap = document.getElementById('heroDots');
+      let idx = 0, timer;
+      // create dots
+      slides.forEach((s,i)=>{ const d = document.createElement('div'); d.className='dot'; d.addEventListener('click', ()=>{ go(i); }); dotsWrap.appendChild(d); });
+      const dots = Array.from(dotsWrap.children);
+      function show(i){
+        slides.forEach((s,si)=> s.classList.toggle('show', si===i));
+        dots.forEach((d,di)=> d.classList.toggle('active', di===i));
+      }
+      function go(i){
+        idx = (i+slides.length)%slides.length; show(idx);
+        clearInterval(timer); timer = setInterval(()=>go(idx+1), 3500);
+      }
+      go(0);
+      timer = setInterval(()=>go(idx+1), 3500);
+    })();
+
+    // Brands continuous scroll: duplicate track to create infinite effect
+    (function(){
+      const track = document.getElementById('brandTrack');
+      // duplicate children to make continuous scroll smoother
+      track.innerHTML = track.innerHTML + track.innerHTML;
+      // set duration proportional to width (optional)
+      // CSS animation already runs; duplication ensures continuous loop
+    })();
+
+    // Category buttons switch
+    (function(){
+      const buttons = document.querySelectorAll('.cat-btn');
+      const sections = document.querySelectorAll('.prod-section');
+      buttons.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          buttons.forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-cat');
+          sections.forEach(sec=> sec.style.display = sec.id===cat ? '' : 'none');
+          // scroll to products area smoothly
+          document.querySelector('#'+cat).scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    })();
+
+    // Small improvement: lazy load images - browsers handle with loading="lazy" but set attribute for thumbs
+    document.querySelectorAll('.thumb img').forEach(img=> img.setAttribute('loading','lazy'));
+
+    // Buy Now buttons placeholder: later we'll connect to payment (Stripe/Razorpay)
+    document.querySelectorAll('.btn').forEach(b=>{
+      b.addEventListener('click',(e)=>{
+        if(b.dataset && b.dataset.product){
+          e.preventDefault();
+          alert('Buy Now clicked for: ' + b.dataset.product + ' — price: $' + b.dataset.price + '\n\nPayment integration will be added next (Stripe / PayPal / Razorpay).');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
