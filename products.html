@@ -32,7 +32,7 @@
   <div class="wrap2">
     <div class="controls">
       <input id="q" class="search" placeholder="Search products (e.g. honey, shampoo)" />
-      <select id="catFilter"><option value="">All categories</option><option>groceries</option><option>pets</option><option>supplements</option><option>beauty</option></select>
+      <select id="catFilter"><option value="">All categories</option><option value="groceries">Groceries</option><option value="pets">Pet Supplies</option><option value="supplements">Supplements</option><option value="beauty">Beauty</option></select>
       <select id="sort"><option value="featured">Sort: Featured</option><option value="price-asc">Price: Low → High</option><option value="price-desc">Price: High → Low</option></select>
       <button id="reset">Reset</button>
     </div>
@@ -45,24 +45,31 @@
   </footer>
 
   <script>
-    // product data (static)
     const PRODUCTS = [
+      // groceries
       {id:1,cat:'groceries',title:'Organic Honey',desc:'Raw organic honey, 500g',price:8.99,img:'https://via.placeholder.com/800x600?text=Organic+Honey'},
-      {id:2,cat:'groceries',title:'Olive Oil',desc:'Extra virgin olive oil 1L',price:12.50,img:'https://via.placeholder.com/800x600?text=Olive+Oil'},
+      {id:2,cat:'groceries',title:'Olive Oil',desc:'Extra virgin olive oil 1L',price:12.5,img:'https://via.placeholder.com/800x600?text=Olive+Oil'},
       {id:3,cat:'groceries',title:'Cereal Pack',desc:'Healthy breakfast cereal',price:5.99,img:'https://via.placeholder.com/800x600?text=Cereal+Pack'},
       {id:4,cat:'groceries',title:'Pasta Pack',desc:'Italian pasta 1kg',price:4.99,img:'https://via.placeholder.com/800x600?text=Pasta+Pack'},
-      {id:5,cat:'pets',title:'Dog Food',desc:'Balanced nutrition for adult dogs',price:14.99,img:'https://via.placeholder.com/800x600?text=Dog+Food'},
-      {id:6,cat:'pets',title:'Cat Toy',desc:'Interactive cat toy',price:6.50,img:'https://via.placeholder.com/800x600?text=Cat+Toy'},
-      {id:7,cat:'pets',title:'Pet Shampoo',desc:'Gentle pet shampoo',price:9.99,img:'https://via.placeholder.com/800x600?text=Pet+Shampoo'},
-      {id:8,cat:'pets',title:'Dog Leash',desc:'Durable leash',price:7.25,img:'https://via.placeholder.com/800x600?text=Dog+Leash'},
-      {id:9,cat:'supplements',title:'Vitamin C',desc:'Immune support tablets',price:10.99,img:'https://via.placeholder.com/800x600?text=Vitamin+C'},
-      {id:10,cat:'supplements',title:'Protein Powder',desc:'Whey protein 2lb',price:25.00,img:'https://via.placeholder.com/800x600?text=Protein+Powder'},
-      {id:11,cat:'supplements',title:'Fish Oil',desc:'Omega-3 softgels',price:15.75,img:'https://via.placeholder.com/800x600?text=Fish+Oil'},
-      {id:12,cat:'supplements',title:'Multivitamin',desc:'Daily multivitamin',price:18.40,img:'https://via.placeholder.com/800x600?text=Multivitamin'},
-      {id:13,cat:'beauty',title:'Face Cream',desc:'Hydrating face cream',price:11.99,img:'https://via.placeholder.com/800x600?text=Face+Cream'},
-      {id:14,cat:'beauty',title:'Perfume',desc:'Designer perfume 50ml',price:29.99,img:'https://via.placeholder.com/800x600?text=Perfume'},
-      {id:15,cat:'beauty',title:'Shampoo',desc:'Nourishing hair shampoo',price:9.50,img:'https://via.placeholder.com/800x600?text=Shampoo'},
-      {id:16,cat:'beauty',title:'Lipstick',desc:'Matte lipstick',price:8.99,img:'https://via.placeholder.com/800x600?text=Lipstick'}
+      {id:5,cat:'groceries',title:'Pancake Mix',desc:'Easy pancake mix',price:6.25,img:'https://via.placeholder.com/800x600?text=Pancake+Mix'},
+      // pets
+      {id:6,cat:'pets',title:'Dog Food',desc:'Balanced nutrition for adult dogs',price:14.99,img:'https://via.placeholder.com/800x600?text=Dog+Food'},
+      {id:7,cat:'pets',title:'Cat Toy',desc:'Interactive cat toy',price:6.5,img:'https://via.placeholder.com/800x600?text=Cat+Toy'},
+      {id:8,cat:'pets',title:'Pet Shampoo',desc:'Gentle pet shampoo',price:9.99,img:'https://via.placeholder.com/800x600?text=Pet+Shampoo'},
+      {id:9,cat:'pets',title:'Dog Leash',desc:'Durable leash',price:7.25,img:'https://via.placeholder.com/800x600?text=Dog+Leash'},
+      {id:10,cat:'pets',title:'Cat Food Pack',desc:'Complete cat food',price:13.5,img:'https://via.placeholder.com/800x600?text=Cat+Food'},
+      // supplements
+      {id:11,cat:'supplements',title:'Vitamin C',desc:'Immune support tablets',price:10.99,img:'https://via.placeholder.com/800x600?text=Vitamin+C'},
+      {id:12,cat:'supplements',title:'Protein Powder',desc:'Whey protein 2lb',price:25.00,img:'https://via.placeholder.com/800x600?text=Protein+Powder'},
+      {id:13,cat:'supplements',title:'Fish Oil',desc:'Omega-3 softgels',price:15.75,img:'https://via.placeholder.com/800x600?text=Fish+Oil'},
+      {id:14,cat:'supplements',title:'Multivitamin',desc:'Daily multivitamin',price:18.4,img:'https://via.placeholder.com/800x600?text=Multivitamin'},
+      {id:15,cat:'supplements',title:'Calcium+VitD',desc:'Bone health supplement',price:9.9,img:'https://via.placeholder.com/800x600?text=Calcium+VitD'},
+      // beauty
+      {id:16,cat:'beauty',title:'Face Cream',desc:'Hydrating face cream',price:11.99,img:'https://via.placeholder.com/800x600?text=Face+Cream'},
+      {id:17,cat:'beauty',title:'Perfume',desc:'Designer perfume 50ml',price:29.99,img:'https://via.placeholder.com/800x600?text=Perfume'},
+      {id:18,cat:'beauty',title:'Shampoo',desc:'Nourishing hair shampoo',price:9.5,img:'https://via.placeholder.com/800x600?text=Shampoo'},
+      {id:19,cat:'beauty',title:'Lipstick',desc:'Matte lipstick',price:8.99,img:'https://via.placeholder.com/800x600?text=Lipstick'},
+      {id:20,cat:'beauty',title:'Face Mask',desc:'Detox face mask',price:7.5,img:'https://via.placeholder.com/800x600?text=Face+Mask'}
     ];
 
     const grid = document.getElementById('grid');
@@ -76,20 +83,13 @@
       if(!list.length){ grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#666">No products found</p>'; return; }
       list.forEach(p=>{
         const el = document.createElement('div'); el.className='card';
-        el.innerHTML = `<div class="thumb"><img src="${p.img}" loading="lazy" alt="${p.title}"></div><h3>${p.title}</h3><p class="desc">${p.desc}</p><div class="price">$${p.price.toFixed(2)}</div><div class="actions"><a class="btn" href="#" data-id="${p.id}">Buy Now</a><a class="btn secondary" href="products.html?open=${encodeURIComponent(p.title)}">View</a></div>`;
+        el.innerHTML = `<div class="thumb"><img src="${p.img}" loading="lazy" alt="${p.title}"></div><h3>${p.title}</h3><p class="desc">${p.desc}</p><div class="price">$${p.price.toFixed(2)}</div><div class="actions"><a class="btn" href="checkout.html?product=${encodeURIComponent(p.title)}&price=${p.price}">Buy Now</a><a class="btn secondary" href="products.html?open=${encodeURIComponent(p.title)}">View</a></div>`;
         grid.appendChild(el);
       });
-      // attach buy clicks
-      grid.querySelectorAll('.btn').forEach(b=> b.addEventListener('click', (e)=>{
-        e.preventDefault();
-        const id = b.dataset.id;
-        const prod = PRODUCTS.find(x=>x.id==id);
-        alert('Buy Now pressed for: ' + prod.title + ' — $' + prod.price.toFixed(2) + '\n\nWe will add payment links next.');
-      }));
     }
 
     function getFiltered(){
-      let out = PRODUCTS.slice();
+      let out = PRODUCTS.slice ? PRODUCTS.slice() : PRODUCTS.concat(); // ensure array copy
       const qv = q.value.trim().toLowerCase();
       if(qv) out = out.filter(p=> (p.title+p.desc).toLowerCase().includes(qv) );
       if(catFilter.value) out = out.filter(p=> p.cat===catFilter.value);
@@ -106,12 +106,12 @@
     // initial render
     render(PRODUCTS);
 
-    // if user came with ?open=ProductName, scroll to it (simulate)
+    // products.html?open=ProductName handling
     (function(){
       const params = new URLSearchParams(location.search);
       const open = params.get('open');
       if(open){
-        setTimeout(()=>{ alert('Product requested: ' + open + '\\nUse View in product detail or Buy Now to checkout (coming soon)'); }, 300);
+        setTimeout(()=>{ alert('Product requested: ' + open + '\\nUse Buy Now to go to checkout.'); }, 300);
       }
     })();
   </script>

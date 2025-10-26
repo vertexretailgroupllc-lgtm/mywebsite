@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — Vertex Retail Group LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#0b66d1;--bg:#f6f8fb}
+    body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#0b1720}
+    header{background:linear-gradient(90deg,#0b4da2,#0d63a6);color:#fff;padding:12px 18px}
+    .wrap{max-width:720px;margin:28px auto;padding:0 16px}
+    .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(12,20,30,0.06)}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    label{font-weight:600;font-size:0.95rem}
+    input{padding:10px;border-radius:8px;border:1px solid #eef2fb;width:100%}
+    .summary{background:#f8fbff;padding:12px;border-radius:8px;margin-bottom:12px}
+    button{padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;border:none;cursor:pointer}
+    footer{background:#072a66;color:#dfe9ff;padding:22px 16px;text-align:center;margin-top:26px}
+  </style>
+</head>
+<body>
+  <header><div style="max-width:720px;margin:0 auto;padding:0 16px;font-weight:700">Checkout</div></header>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>Order Summary</h2>
+      <div id="summary" class="summary"></div>
+
+      <h3>Shipping details</h3>
+      <form id="checkoutForm">
+        <div style="margin-bottom:10px">
+          <label>Full name</label>
+          <input name="name" required />
+        </div>
+        <div style="margin-bottom:10px">
+          <label>Shipping address</label>
+          <input name="address" required placeholder="Street, City, State, ZIP" />
+        </div>
+        <div style="margin-bottom:10px">
+          <label>Email</label>
+          <input name="email" type="email" required />
+        </div>
+
+        <h3>Payment (Demo)</h3>
+        <p style="color:#666">This is a static demo checkout. To accept real payments we will add Stripe / PayPal integration next.</p>
+
+        <button type="submit">Place order (Demo)</button>
+      </form>
+      <div id="done" style="display:none;margin-top:12px;background:#e6ffed;padding:12px;border-radius:8px;color:#084d20"></div>
+    </div>
+  </div>
+
+  <footer>Vertex Retail Group LLC — brand@vertexretailgroupllc.com — 📞 +1 786-429-9302</footer>
+
+  <script>
+    // read product & price from query string
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const product = params.get('product') || 'Selected product';
+      const price = parseFloat(params.get('price')) || 0;
+      document.getElementById('summary').innerHTML = `<strong>${product}</strong><div style="margin-top:6px">Price: <strong>$${price.toFixed(2)}</strong></div>`;
+      const form = document.getElementById('checkoutForm');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const address = form.address.value.trim();
+        // demo behaviour: show success and simulate order id
+        const orderId = 'VR' + Math.floor(Math.random()*900000 + 100000);
+        document.getElementById('done').style.display = 'block';
+        document.getElementById('done').innerText = `Thank you ${name}! Your demo order (${orderId}) for "${product}" of $${price.toFixed(2)} has been placed. We will contact you at ${email}.`;
+        form.reset();
+        // optionally redirect to a thank-you page or send mailto
+      });
+    })();
+  </script>
+</body>
+</html>
+s

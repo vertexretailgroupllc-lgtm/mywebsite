@@ -53,7 +53,7 @@
     .btn.secondary{background:#f3f6f9;color:var(--muted);border:1px solid #eef2f8}
     footer{background:#072a66;color:#dfe9ff;padding:22px 16px;text-align:center;margin-top:30px}
     /* RESPONSIVE */
-    @media (max-width:720px){ .hero{height:280px} .thumb{height:140px} .brand-track{padding-left:10px} .nav .wrap{padding:0 8px} }
+    @media (max-width:720px){ .hero{height:300px} .thumb{height:140px} .brand-track{padding-left:10px} .nav .wrap{padding:0 8px} }
   </style>
 </head>
 <body>
@@ -67,22 +67,23 @@
   <!-- HERO (category-based slides) -->
   <div class="hero-wrap">
     <div class="hero" id="hero">
-      <div class="slide" data-cat="groceries" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&q=60&w=1600&fit=crop');background-size:cover">
+      <!-- groceries -->
+      <div class="slide" data-cat="groceries" style="background-image:url('https://via.placeholder.com/1600x700?text=Groceries');background-size:cover">
         <div class="overlay"></div>
         <div class="content"><h1>Groceries</h1><p>Fresh items, pantry essentials & daily staples</p></div>
       </div>
-
-      <div class="slide" data-cat="pets" style="background-image:url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&q=60&w=1600&fit=crop');background-size:cover">
+      <!-- pets -->
+      <div class="slide" data-cat="pets" style="background-image:url('https://via.placeholder.com/1600x700?text=Pet+Supplies');background-size:cover">
         <div class="overlay"></div>
         <div class="content"><h1>Pet Supplies</h1><p>Food, toys & accessories for your pets</p></div>
       </div>
-
-      <div class="slide" data-cat="supplements" style="background-image:url('https://images.unsplash.com/photo-1587825140708-2f8a9dcd2f47?auto=format&q=60&w=1600&fit=crop');background-size:cover">
+      <!-- supplements -->
+      <div class="slide" data-cat="supplements" style="background-image:url('https://via.placeholder.com/1600x700?text=Supplements');background-size:cover">
         <div class="overlay"></div>
         <div class="content"><h1>Supplements</h1><p>Vitamins, protein & health essentials</p></div>
       </div>
-
-      <div class="slide" data-cat="beauty" style="background-image:url('https://images.unsplash.com/photo-1500839941678-aae14dbfae1e?auto=format&q=60&w=1600&fit=crop');background-size:cover">
+      <!-- beauty -->
+      <div class="slide" data-cat="beauty" style="background-image:url('https://via.placeholder.com/1600x700?text=Beauty');background-size:cover">
         <div class="overlay"></div>
         <div class="content"><h1>Beauty</h1><p>Skincare, haircare & cosmetics</p></div>
       </div>
@@ -91,22 +92,20 @@
     </div>
   </div>
 
-  <!-- BRANDS (continuous) -->
+  <!-- BRANDS (safe placeholders) -->
   <div class="brands-wrap">
     <div class="brand-track" id="brandTrack">
-      <!-- using safe placeholder logos so images show reliably; replace with your own later if needed -->
-      <img src="https://via.placeholder.com/140x44?text=Nestle" alt="Nestle">
-      <img src="https://via.placeholder.com/140x44?text=Pedigree" alt="Pedigree">
-      <img src="https://via.placeholder.com/140x44?text=GNC" alt="GNC">
-      <img src="https://via.placeholder.com/140x44?text=L%27Oreal" alt="L'Oreal">
-      <img src="https://via.placeholder.com/140x44?text=Dove" alt="Dove">
-      <img src="https://via.placeholder.com/140x44?text=Royal+Canin" alt="Royal Canin">
-      <img src="https://via.placeholder.com/140x44?text=Olay" alt="Olay">
-      <!-- duplicate set (JS duplicates too) -->
+      <img src="https://via.placeholder.com/140x44?text=Nestle" alt="Nestle" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=Pedigree" alt="Pedigree" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=GNC" alt="GNC" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=L'Oreal" alt="L'Oreal" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=Dove" alt="Dove" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=Royal+Canin" alt="RoyalCanin" loading="lazy">
+      <img src="https://via.placeholder.com/140x44?text=Olay" alt="Olay" loading="lazy">
     </div>
   </div>
 
-  <!-- CATEGORIES quick buttons -->
+  <!-- CATEGORY FILTER BUTTONS -->
   <div class="cats" id="cats">
     <div class="cat-btn active" data-cat="groceries">Groceries 🥫</div>
     <div class="cat-btn" data-cat="pets">Pet Supplies 🐾</div>
@@ -114,59 +113,80 @@
     <div class="cat-btn" data-cat="beauty">Beauty 💄</div>
   </div>
 
-  <!-- PRODUCTS (summary view for home; full list in products.html) -->
+  <!-- Featured products (home) -->
   <div class="container">
-    <h2 style="text-align:center;margin-bottom:12px">Featured — click View for details</h2>
+    <h2 style="text-align:center;margin-bottom:12px">Featured items</h2>
     <div class="grid" id="homeGrid">
-      <!-- 4 sample featured cards; more on products page -->
-      <div class="card" data-cat="groceries"><div class="thumb"><img src="https://via.placeholder.com/600x400?text=Organic+Honey" alt="Organic Honey"></div><h3>Organic Honey</h3><p class="desc">Raw organic honey, 500g</p><div class="price">$8.99</div><div class="actions"><a href="products.html?open=Organic+Honey" class="btn">View</a><a href="#" class="btn secondary">Buy Now</a></div></div>
+      <!-- 8 sample featured cards; each Buy Now opens checkout.html?product=...&price=... -->
+      <div class="card" data-cat="groceries">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Organic+Honey" alt="Organic Honey" loading="lazy"></div>
+        <h3>Organic Honey</h3>
+        <p class="desc">Raw organic honey, 500g</p>
+        <div class="price">$8.99</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Organic%20Honey&price=8.99">Buy Now</a><a class="btn secondary" href="products.html?open=Organic%20Honey">View</a></div>
+      </div>
 
-      <div class="card" data-cat="groceries"><div class="thumb"><img src="https://via.placeholder.com/600x400?text=Olive+Oil" alt="Olive Oil"></div><h3>Olive Oil</h3><p class="desc">Extra virgin olive oil 1L</p><div class="price">$12.50</div><div class="actions"><a href="products.html?open=Olive+Oil" class="btn">View</a><a href="#" class="btn secondary">Buy Now</a></div></div>
+      <div class="card" data-cat="groceries">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Olive+Oil" alt="Olive Oil" loading="lazy"></div>
+        <h3>Olive Oil</h3><p class="desc">Extra virgin olive oil 1L</p><div class="price">$12.50</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Olive%20Oil&price=12.5">Buy Now</a><a class="btn secondary" href="products.html?open=Olive%20Oil">View</a></div>
+      </div>
 
-      <div class="card" data-cat="pets"><div class="thumb"><img src="https://via.placeholder.com/600x400?text=Dog+Food" alt="Dog Food"></div><h3>Dog Food</h3><p class="desc">Balanced nutrition for adult dogs</p><div class="price">$14.99</div><div class="actions"><a href="products.html?open=Dog+Food" class="btn">View</a><a href="#" class="btn secondary">Buy Now</a></div></div>
+      <div class="card" data-cat="pets">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Dog+Food" alt="Dog Food" loading="lazy"></div>
+        <h3>Dog Food</h3><p class="desc">Balanced nutrition for adult dogs</p><div class="price">$14.99</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Dog%20Food&price=14.99">Buy Now</a><a class="btn secondary" href="products.html?open=Dog%20Food">View</a></div>
+      </div>
 
-      <div class="card" data-cat="beauty"><div class="thumb"><img src="https://via.placeholder.com/600x400?text=Face+Cream" alt="Face Cream"></div><h3>Face Cream</h3><p class="desc">Hydrating skincare</p><div class="price">$11.99</div><div class="actions"><a href="products.html?open=Face+Cream" class="btn">View</a><a href="#" class="btn secondary">Buy Now</a></div></div>
+      <div class="card" data-cat="beauty">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Face+Cream" alt="Face Cream" loading="lazy"></div>
+        <h3>Face Cream</h3><p class="desc">Hydrating skincare</p><div class="price">$11.99</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Face%20Cream&price=11.99">Buy Now</a><a class="btn secondary" href="products.html?open=Face%20Cream">View</a></div>
+      </div>
+
+      <div class="card" data-cat="supplements">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Vitamin+C" alt="Vitamin C" loading="lazy"></div>
+        <h3>Vitamin C</h3><p class="desc">Immune support tablets</p><div class="price">$10.99</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Vitamin%20C&price=10.99">Buy Now</a><a class="btn secondary" href="products.html?open=Vitamin%20C">View</a></div>
+      </div>
+
+      <div class="card" data-cat="beauty">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Perfume" alt="Perfume" loading="lazy"></div>
+        <h3>Perfume</h3><p class="desc">Designer perfume 50ml</p><div class="price">$29.99</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Perfume&price=29.99">Buy Now</a><a class="btn secondary" href="products.html?open=Perfume">View</a></div>
+      </div>
+
+      <div class="card" data-cat="pets">
+        <div class="thumb"><img src="https://via.placeholder.com/800x600?text=Cat+Toy" alt="Cat Toy" loading="lazy"></div>
+        <h3>Cat Toy</h3><p class="desc">Interactive toy for cats</p><div class="price">$6.50</div>
+        <div class="actions"><a class="btn" href="checkout.html?product=Cat%20Toy&price=6.5">Buy Now</a><a class="btn secondary" href="products.html?open=Cat%20Toy">View</a></div>
+      </div>
     </div>
   </div>
 
   <footer>
     <p>Vertex Retail Group LLC</p>
     <p>7901 4th St N #24751, St. Petersburg, FL 33702</p>
-    <p>📞 +1 786-429-9302</p>
+    <p>📧 brand@vertexretailgroupllc.com &nbsp; | &nbsp; 📞 +1 786-429-9302</p>
   </footer>
 
   <script>
-    // HERO slider (fade + auto) with dots + category mapping
+    // HERO slider
     (function(){
       const slides = Array.from(document.querySelectorAll('.hero .slide'));
       const dotsWrap = document.getElementById('dots');
       let index = 0, timer;
-      slides.forEach((s,i)=>{
-        const d = document.createElement('div'); d.className='dot'; d.addEventListener('click', ()=> goto(i));
-        dotsWrap.appendChild(d);
-      });
+      slides.forEach((s,i)=>{ const d = document.createElement('div'); d.className='dot'; d.addEventListener('click', ()=> goto(i)); dotsWrap.appendChild(d); });
       const dots = Array.from(dotsWrap.children);
-      function show(i){
-        slides.forEach((s,ii)=> s.classList.toggle('show', ii===i));
-        dots.forEach((d,ii)=> d.classList.toggle('active', ii===i));
-      }
-      function goto(i){
-        index = (i + slides.length) % slides.length;
-        show(index);
-        clearInterval(timer);
-        timer = setInterval(()=> goto(index+1), 3500);
-      }
-      goto(0);
-      timer = setInterval(()=> goto(index+1), 3500);
+      function show(i){ slides.forEach((s,ii)=> s.classList.toggle('show', ii===i)); dots.forEach((d,ii)=> d.classList.toggle('active', ii===i)); }
+      function goto(i){ index = (i + slides.length) % slides.length; show(index); clearInterval(timer); timer = setInterval(()=> goto(index+1), 3500); }
+      goto(0); timer = setInterval(()=> goto(index+1), 3500);
     })();
 
-    // Brand track duplication for continuous scroll
-    (function(){
-      const track = document.getElementById('brandTrack');
-      track.innerHTML = track.innerHTML + track.innerHTML; // duplicate for smooth scroll
-    })();
+    // brand duplication for smooth scroll
+    (function(){ const track = document.getElementById('brandTrack'); if(track) track.innerHTML = track.innerHTML + track.innerHTML; })();
 
-    // Category quick buttons - scroll to products and highlight
+    // category buttons filter featured home grid
     (function(){
       const btns = document.querySelectorAll('.cat-btn');
       const homeGrid = document.getElementById('homeGrid');
@@ -174,11 +194,7 @@
         b.addEventListener('click', ()=>{
           btns.forEach(x=>x.classList.remove('active')); b.classList.add('active');
           const cat = b.dataset.cat;
-          // show only featured cards from that cat on home featured grid
-          Array.from(homeGrid.children).forEach(card=>{
-            card.style.display = (cat === card.dataset.cat) ? '' : 'none';
-          });
-          // scroll to products
+          Array.from(homeGrid.children).forEach(card=> card.style.display = (cat === card.dataset.cat) ? '' : 'none');
           homeGrid.scrollIntoView({behavior:'smooth', block:'start'});
         });
       });

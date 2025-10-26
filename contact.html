@@ -23,8 +23,9 @@
   <div class="wrap">
     <div class="card">
       <h2>Get in touch</h2>
-      <p>Address: 7901 4th St N #24751, St. Petersburg, FL 33702</p>
-      <p>Phone: 📞 +1 786-429-9302</p>
+      <p><strong>Address:</strong> 7901 4th St N #24751, St. Petersburg, FL 33702</p>
+      <p><strong>Phone:</strong> 📞 +1 786-429-9302</p>
+      <p><strong>Email:</strong> <a href="mailto:brand@vertexretailgroupllc.com">brand@vertexretailgroupllc.com</a></p>
       <form onsubmit="return sendMail(this)">
         <input name="name" placeholder="Your name" required />
         <input name="email" type="email" placeholder="Your email" required />
@@ -34,14 +35,13 @@
     </div>
   </div>
 
-  <footer>Vertex Retail Group LLC — 📞 +1 786-429-9302</footer>
+  <footer>Vertex Retail Group LLC — 📞 +1 786-429-9302 — brand@vertexretailgroupllc.com</footer>
 
   <script>
     function sendMail(f){
-      // Static site: use mailto so message opens user's email client
       const subject = encodeURIComponent('Website inquiry from ' + f.name.value);
       const body = encodeURIComponent('Name: ' + f.name.value + '\\nEmail: ' + f.email.value + '\\n\\n' + f.message.value);
-      window.location.href = 'mailto:hello@vertexretailgroupllc.com?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:brand@vertexretailgroupllc.com?subject=' + subject + '&body=' + body;
       return false;
     }
   </script>
